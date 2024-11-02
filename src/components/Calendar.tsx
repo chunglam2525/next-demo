@@ -80,7 +80,7 @@ export default function Calendar(inputProps: ComponentProps) {
       weekDayForCurrent = weekDayForCurrent === 7 ? 1 : (weekDayForCurrent + 1)
     }
     return matrix
-  }, [displayYear, displayMonth])
+  }, [displayYear, displayMonth, inHighlight])
 
   const avaliableYears = () => {
     const years: number[] = []
@@ -146,7 +146,7 @@ export default function Calendar(inputProps: ComponentProps) {
       (props.range?.from && props.range.from.getTime() > targetDate.getTime()) ||
       (props.range?.to && props.range.to.getTime() < targetDate.getTime())
     ) {
-      setSelectedDate({ day: null, month: null, year: null })
+      setSelectedDate({ day: undefined, month: undefined, year: undefined })
       return
     }
     setSelectedDate(res)
@@ -166,7 +166,7 @@ export default function Calendar(inputProps: ComponentProps) {
             monthText[displayMonth - 1]
           :
             <select
-              value={displayMonth}  onChange={e => setDisplayMonth(e.target.value)}
+              value={displayMonth}  onChange={e => setDisplayMonth(parseInt(e.target.value))}
               className="text-center bg-transparent p-0 appearance-none font-bold border-0"
             >
               {[...Array(12).keys()].map(month => {
@@ -182,7 +182,7 @@ export default function Calendar(inputProps: ComponentProps) {
             displayYear
           :
             <select
-              value={displayYear} onChange={e => setDisplayYear(e.target.value)}
+              value={displayYear} onChange={e => setDisplayYear(parseInt(e.target.value))}
               className="text-center bg-transparent p-0 appearance-none font-bold border-0"
             >
               {avaliableYears().map(year => (

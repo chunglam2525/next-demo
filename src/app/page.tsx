@@ -4,10 +4,10 @@ import Calendar from "@/components/Calendar";
 import React, { useState } from 'react';
 
 export default function Home() {
-  const selectedDate1 = useState({day: 1, month: 11, year: 2024})
-  const selectedDate2 = useState({day: 1, month: 11, year: 2024})
-  const selectedDate3 = useState({day: 1, month: 11, year: 2024})
-  const formatDate = ({ day, month, year }) => {
+  const selectedDate1 = useState<{ day?: number, month?: number, year?: number }>({day: 1, month: 11, year: 2024})
+  const selectedDate2 = useState<{ day?: number, month?: number, year?: number }>({day: 1, month: 11, year: 2024})
+  const selectedDate3 = useState<{ day?: number, month?: number, year?: number }>({day: 1, month: 11, year: 2024})
+  const formatDate = ({ day, month, year }: { day?: number, month?: number, year?: number }) => {
     return `${day}/${month}/${year}`;
   };
 
