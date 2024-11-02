@@ -1,7 +1,6 @@
 "use client";
 
 import Calendar from "@/components/Calendar";
-import Image from "next/image";
 import React, { useState } from 'react';
 
 export default function Home() {
