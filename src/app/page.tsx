@@ -8,7 +8,7 @@ export default function Home() {
   const selectedDate2 = useState<{ day?: number, month?: number, year?: number }>({day: 1, month: 11, year: 2024})
   const selectedDate3 = useState<{ day?: number, month?: number, year?: number }>({day: 1, month: 11, year: 2024})
   const formatDate = ({ day, month, year }: { day?: number, month?: number, year?: number }) => {
-    return `${day}/${month}/${year}`;
+    return year && month && day ? `${day}/${month}/${year}` : '--/--/----';
   };
 
   return (

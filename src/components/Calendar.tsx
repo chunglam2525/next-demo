@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState, useCallback } from 'react';
 
 type ComponentProps = {
   selected: [
@@ -40,7 +40,7 @@ export default function Calendar(inputProps: ComponentProps) {
     if (selectedDate.month) { setDisplayMonth(selectedDate.month) }
   }, [selectedDate])
 
-  const inHighlight = ({ year, month, day }: {year: number, month: number, day: number | null}) => {
+  const inHighlight = useCallback(({ year, month, day }: {year: number, month: number, day: number | null}) => {
     if (!props.highlights || !day) { return '' }
     const targetDate = new Date(year, month - 1, day)
     for (const highlight of props.highlights) {
@@ -59,7 +59,7 @@ export default function Calendar(inputProps: ComponentProps) {
       }
     }
     return undefined
-  }
+  }, [props.highlights])
 
   const calendarMatrix = useMemo(() => {
     let weekDayForCurrent = new Date(displayYear, displayMonth - 1, 1).getDay() || 7 // 1-7, 1: Monday, 7: Sunday
